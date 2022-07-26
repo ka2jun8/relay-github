@@ -1,0 +1,22 @@
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    },
+    "cSpell.words": [
+      "clsx",
+      "ellipsized",
+      "stylelint",
+      "testid",
+      "hygen",
+      "kani",
+      "graphiql"
+    ],
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false,
+    "stylelint.validate": ["css", "scss"],
+    "editor.guides.bracketPairs": true
+  }
+  
