@@ -2,8 +2,11 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { useState } from "react";
 import { useLazyLoadQuery } from "react-relay";
+import { useRecoilState } from "recoil";
 import { graphql } from "relay-runtime";
 import { IssueList } from "../components/IssueList";
+import { nameState } from "../recoil/name";
+import { ownerState } from "../recoil/owner";
 import { issuesQuery, IssueState } from "./__generated__/issuesQuery.graphql";
 
 const GitHubQuery = graphql`
@@ -16,9 +19,11 @@ const GitHubQuery = graphql`
 
 const Issues: NextPage = () => {
   const [issueState, setIssueState] = useState<IssueState>("OPEN");
+  const [name] = useRecoilState(nameState);
+  const [owner] = useRecoilState(ownerState);
   const data = useLazyLoadQuery<issuesQuery>(GitHubQuery, {
-    owner: "ka2jun8",
-    name: "relay-github",
+    owner,
+    name,
     state: issueState,
   });
 

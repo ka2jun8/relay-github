@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import RelayEnvironment from "../relay/RelayEnvironment";
 import { AppProps } from "next/app";
 import dynamic from "next/dynamic";
+import { RecoilRoot } from "recoil";
 
 const SafeHydrate = dynamic(() => import("../components/SafeHydrate"), {
   ssr: false,
@@ -12,11 +13,13 @@ const SafeHydrate = dynamic(() => import("../components/SafeHydrate"), {
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RelayEnvironmentProvider environment={RelayEnvironment}>
-      <SafeHydrate>
-        <Suspense fallback={"Loading..."}>
-          <Component {...pageProps} />
-        </Suspense>
-      </SafeHydrate>
+      <RecoilRoot>
+        <SafeHydrate>
+          <Suspense fallback={"Loading..."}>
+            <Component {...pageProps} />
+          </Suspense>
+        </SafeHydrate>
+      </RecoilRoot>
     </RelayEnvironmentProvider>
   );
 }
