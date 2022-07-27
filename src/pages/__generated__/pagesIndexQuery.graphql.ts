@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4d0933911a2cb7faf8a5d8f2639c8686>>
+ * @generated SignedSource<<256231bdd09d7ba52cf53666be874671>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,20 +9,20 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
-export type pagesIndexRepositoryNameQuery$variables = {
+export type pagesIndexQuery$variables = {
   name: string;
   owner: string;
 };
-export type pagesIndexRepositoryNameQuery$data = {
+export type pagesIndexQuery$data = {
   readonly repository: {
     readonly __typename: "Repository";
     readonly id: string;
     readonly name: string;
   } | null;
 };
-export type pagesIndexRepositoryNameQuery = {
-  response: pagesIndexRepositoryNameQuery$data;
-  variables: pagesIndexRepositoryNameQuery$variables;
+export type pagesIndexQuery = {
+  response: pagesIndexQuery$data;
+  variables: pagesIndexQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
@@ -89,7 +89,7 @@ return {
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "pagesIndexRepositoryNameQuery",
+    "name": "pagesIndexQuery",
     "selections": (v2/*: any*/),
     "type": "Query",
     "abstractKey": null
@@ -101,20 +101,20 @@ return {
       (v0/*: any*/)
     ],
     "kind": "Operation",
-    "name": "pagesIndexRepositoryNameQuery",
+    "name": "pagesIndexQuery",
     "selections": (v2/*: any*/)
   },
   "params": {
-    "cacheID": "67cb7d6cd77048c928f1461f2289c71e",
+    "cacheID": "eaec0216c674b1b625d4b89d11c13360",
     "id": null,
     "metadata": {},
-    "name": "pagesIndexRepositoryNameQuery",
+    "name": "pagesIndexQuery",
     "operationKind": "query",
-    "text": "query pagesIndexRepositoryNameQuery(\n  $owner: String!\n  $name: String!\n) {\n  repository(owner: $owner, name: $name) {\n    __typename\n    id\n    name\n  }\n}\n"
+    "text": "query pagesIndexQuery(\n  $owner: String!\n  $name: String!\n) {\n  repository(owner: $owner, name: $name) {\n    __typename\n    id\n    name\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "e1f70e714d35c7ce7cff457a06896397";
+(node as any).hash = "621e51147e82fbb899300982e19a75c4";
 
 export default node;

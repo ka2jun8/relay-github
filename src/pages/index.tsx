@@ -6,10 +6,10 @@ import { useLazyLoadQuery } from "react-relay";
 import { graphql } from "relay-runtime";
 import styles from "../../styles/Home.module.css";
 import { IssueButton } from "../components/IssueButton";
-import { pagesIndexRepositoryNameQuery } from "./__generated__/pagesIndexRepositoryNameQuery.graphql";
+import { pagesIndexQuery } from "./__generated__/pagesIndexQuery.graphql";
 
 const GitHubQuery = graphql`
-  query pagesIndexRepositoryNameQuery($owner: String!, $name: String!) {
+  query pagesIndexQuery($owner: String!, $name: String!) {
     repository(owner: $owner, name: $name) {
       __typename
       id
@@ -19,7 +19,7 @@ const GitHubQuery = graphql`
 `;
 
 const Home: NextPage = () => {
-  const data = useLazyLoadQuery<pagesIndexRepositoryNameQuery>(GitHubQuery, {
+  const data = useLazyLoadQuery<pagesIndexQuery>(GitHubQuery, {
     owner: "ka2jun8",
     name: "relay-github",
   });
