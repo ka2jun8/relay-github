@@ -34,6 +34,7 @@ const Issues: NextPage = () => {
   return (
     <div>
       <IssueList
+        state={issueState}
         repository={data.repository}
         onChangeIssueState={setIssueState}
       />

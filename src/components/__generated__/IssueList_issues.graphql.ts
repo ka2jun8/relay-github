@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<dd6181864c2cb8012e2e8df00d94bc4d>>
+ * @generated SignedSource<<2a1d9cc235021541699b265631be2306>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,10 +8,11 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Fragment, ReaderFragment } from 'relay-runtime';
+import { ReaderFragment, RefetchableFragment } from 'relay-runtime';
 export type IssueState = "CLOSED" | "OPEN" | "%future added value";
 import { FragmentRefs } from "relay-runtime";
 export type IssueList_issues$data = {
+  readonly id: string;
   readonly issues: {
     readonly edges: ReadonlyArray<{
       readonly node: {
@@ -29,16 +30,33 @@ export type IssueList_issues$key = {
   readonly " $fragmentSpreads": FragmentRefs<"IssueList_issues">;
 };
 
-const node: ReaderFragment = {
+const node: ReaderFragment = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
+return {
   "argumentDefinitions": [
     {
-      "defaultValue": "OPEN",
+      "defaultValue": null,
       "kind": "LocalArgument",
       "name": "state"
     }
   ],
   "kind": "Fragment",
-  "metadata": null,
+  "metadata": {
+    "refetch": {
+      "connection": null,
+      "fragmentPathInResult": [
+        "node"
+      ],
+      "operation": require('./IssueListRefetchQuery.graphql'),
+      "identifierField": "id"
+    }
+  },
   "name": "IssueList_issues",
   "selections": [
     {
@@ -88,13 +106,7 @@ const node: ReaderFragment = {
               "name": "node",
               "plural": false,
               "selections": [
-                {
-                  "alias": null,
-                  "args": null,
-                  "kind": "ScalarField",
-                  "name": "id",
-                  "storageKey": null
-                },
+                (v0/*: any*/),
                 {
                   "alias": null,
                   "args": null,
@@ -124,12 +136,14 @@ const node: ReaderFragment = {
         }
       ],
       "storageKey": null
-    }
+    },
+    (v0/*: any*/)
   ],
   "type": "Repository",
   "abstractKey": null
 };
+})();
 
-(node as any).hash = "8dd9c9dfa61ba34d5e7cd356b296fed6";
+(node as any).hash = "1bfbaa7b496a39fb80af95433706154d";
 
 export default node;

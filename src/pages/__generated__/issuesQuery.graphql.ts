@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5c776e26467e92f2bfae561728f9d4cf>>
+ * @generated SignedSource<<fbc34dadb8694ccaa33c6b8f78d2d830>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -201,12 +201,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "021d0e271329bf1afa7f738012f8a8bd",
+    "cacheID": "3f8cbad209f5fe82e76a570d15041f4b",
     "id": null,
     "metadata": {},
     "name": "issuesQuery",
     "operationKind": "query",
-    "text": "query issuesQuery(\n  $owner: String!\n  $name: String!\n  $state: IssueState!\n) {\n  repository(owner: $owner, name: $name) {\n    ...IssueList_issues_2HEoAY\n    id\n  }\n}\n\nfragment IssueList_issues_2HEoAY on Repository {\n  issues(first: 10, filterBy: {states: [$state]}) {\n    edges {\n      node {\n        id\n        number\n        title\n        state\n      }\n    }\n  }\n}\n"
+    "text": "query issuesQuery(\n  $owner: String!\n  $name: String!\n  $state: IssueState!\n) {\n  repository(owner: $owner, name: $name) {\n    ...IssueList_issues_2HEoAY\n    id\n  }\n}\n\nfragment IssueList_issues_2HEoAY on Repository {\n  issues(first: 10, filterBy: {states: [$state]}) {\n    edges {\n      node {\n        id\n        number\n        title\n        state\n      }\n    }\n  }\n  id\n}\n"
   }
 };
 })();

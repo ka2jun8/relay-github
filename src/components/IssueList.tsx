@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { useFragment } from "react-relay";
+import { useFragment, useRefetchableFragment } from "react-relay";
 import { graphql } from "relay-runtime";
 import { IssueState } from "./__generated__/IssueListQuery.graphql";
 import { IssueList_issues$key } from "./__generated__/IssueList_issues.graphql";
 
 const fragment = graphql`
   fragment IssueList_issues on Repository
-  @argumentDefinitions(state: { type: "IssueState!", defaultValue: OPEN }) {
+  @argumentDefinitions(state: { type: "IssueState!" })
+  @refetchable(queryName: "IssueListRefetchQuery") {
     issues(first: 10, filterBy: { states: [$state] }) {
       edges {
         node {
@@ -25,14 +26,16 @@ const repo = "relay-pokemon";
 
 type Props = {
   repository: IssueList_issues$key;
+  state: IssueState;
   onChangeIssueState: (v: IssueState) => void;
 };
 
 export const IssueList: React.FC<Props> = ({
   repository,
+  state,
   onChangeIssueState,
 }) => {
-  const data = useFragment(fragment, repository);
+  const [data, refetch] = useRefetchableFragment(fragment, repository);
 
   if (!data) {
     return null;
@@ -41,6 +44,7 @@ export const IssueList: React.FC<Props> = ({
   return (
     <div>
       <select
+        value={state}
         onChange={(e) => onChangeIssueState(e.target.value as IssueState)}
       >
         <option value="OPEN">OPEN</option>
@@ -57,6 +61,15 @@ export const IssueList: React.FC<Props> = ({
           </li>
         ))}
       </ul>
+      <button
+        onClick={() => {
+          const nextState = state === "OPEN" ? "CLOSED" : "OPEN";
+          onChangeIssueState(nextState);
+          refetch({ state: nextState });
+        }}
+      >
+        switch issues
+      </button>
     </div>
   );
 };
