@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useFragment, useRefetchableFragment } from "react-relay";
+import { useRefetchableFragment } from "react-relay";
 import { graphql } from "relay-runtime";
 import { IssueState } from "./__generated__/IssueListQuery.graphql";
 import { IssueList_issues$key } from "./__generated__/IssueList_issues.graphql";
