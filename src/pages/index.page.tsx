@@ -7,6 +7,7 @@ import { useLazyLoadQuery } from "react-relay";
 import { useRecoilState } from "recoil";
 import { graphql } from "relay-runtime";
 import styles from "../../styles/Home.module.css";
+import { Header } from "../components/Header";
 import { IssueButton } from "../components/IssueButton";
 import { nameState } from "../recoil/name";
 import { ownerState } from "../recoil/owner";
@@ -14,6 +15,9 @@ import { pagesIndexQuery } from "./__generated__/pagesIndexQuery.graphql";
 
 const GitHubQuery = graphql`
   query pagesIndexQuery($owner: String!, $name: String!) {
+    viewer {
+      ...Header_viewer
+    }
     repository(owner: $owner, name: $name) {
       __typename
       id
@@ -32,6 +36,8 @@ const Home: NextPage = () => {
     name: recoilStateName,
   });
 
+  console.log({ data });
+
   if (!data || !data.repository) {
     return null;
   }
@@ -44,6 +50,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Header viewer={data.viewer} />
       <main className={styles.main}>
         <h1 className={styles.title}>GraphQL Relay Sample</h1>
 

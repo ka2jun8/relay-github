@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<256231bdd09d7ba52cf53666be874671>>
+ * @generated SignedSource<<8ca993559ee47fd20efa18f086dae8be>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,6 +9,7 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
+import { FragmentRefs } from "relay-runtime";
 export type pagesIndexQuery$variables = {
   name: string;
   owner: string;
@@ -19,6 +20,9 @@ export type pagesIndexQuery$data = {
     readonly id: string;
     readonly name: string;
   } | null;
+  readonly viewer: {
+    readonly " $fragmentSpreads": FragmentRefs<"Header_viewer">;
+  };
 };
 export type pagesIndexQuery = {
   response: pagesIndexQuery$data;
@@ -36,51 +40,51 @@ v1 = {
   "kind": "LocalArgument",
   "name": "owner"
 },
-v2 = [
-  {
-    "alias": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "name",
-        "variableName": "name"
-      },
-      {
-        "kind": "Variable",
-        "name": "owner",
-        "variableName": "owner"
-      }
-    ],
-    "concreteType": "Repository",
-    "kind": "LinkedField",
-    "name": "repository",
-    "plural": false,
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "__typename",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "id",
-        "storageKey": null
-      },
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "name",
-        "storageKey": null
-      }
-    ],
-    "storageKey": null
-  }
-];
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
+  "storageKey": null
+},
+v4 = {
+  "alias": null,
+  "args": [
+    {
+      "kind": "Variable",
+      "name": "name",
+      "variableName": "name"
+    },
+    {
+      "kind": "Variable",
+      "name": "owner",
+      "variableName": "owner"
+    }
+  ],
+  "concreteType": "Repository",
+  "kind": "LinkedField",
+  "name": "repository",
+  "plural": false,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "__typename",
+      "storageKey": null
+    },
+    (v2/*: any*/),
+    (v3/*: any*/)
+  ],
+  "storageKey": null
+};
 return {
   "fragment": {
     "argumentDefinitions": [
@@ -90,7 +94,25 @@ return {
     "kind": "Fragment",
     "metadata": null,
     "name": "pagesIndexQuery",
-    "selections": (v2/*: any*/),
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "User",
+        "kind": "LinkedField",
+        "name": "viewer",
+        "plural": false,
+        "selections": [
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "Header_viewer"
+          }
+        ],
+        "storageKey": null
+      },
+      (v4/*: any*/)
+    ],
     "type": "Query",
     "abstractKey": null
   },
@@ -102,19 +124,34 @@ return {
     ],
     "kind": "Operation",
     "name": "pagesIndexQuery",
-    "selections": (v2/*: any*/)
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "User",
+        "kind": "LinkedField",
+        "name": "viewer",
+        "plural": false,
+        "selections": [
+          (v3/*: any*/),
+          (v2/*: any*/)
+        ],
+        "storageKey": null
+      },
+      (v4/*: any*/)
+    ]
   },
   "params": {
-    "cacheID": "eaec0216c674b1b625d4b89d11c13360",
+    "cacheID": "2be7cd1b5964141e8180792bed53b733",
     "id": null,
     "metadata": {},
     "name": "pagesIndexQuery",
     "operationKind": "query",
-    "text": "query pagesIndexQuery(\n  $owner: String!\n  $name: String!\n) {\n  repository(owner: $owner, name: $name) {\n    __typename\n    id\n    name\n  }\n}\n"
+    "text": "query pagesIndexQuery(\n  $owner: String!\n  $name: String!\n) {\n  viewer {\n    ...Header_viewer\n    id\n  }\n  repository(owner: $owner, name: $name) {\n    __typename\n    id\n    name\n  }\n}\n\nfragment Header_viewer on User {\n  name\n}\n"
   }
 };
 })();
 
-(node as any).hash = "621e51147e82fbb899300982e19a75c4";
+(node as any).hash = "18c5150ba4136e76b661ebf819eae922";
 
 export default node;

@@ -1,10 +1,16 @@
+import { GraphQLResponse } from "relay-runtime";
+
 const ENDPOINT = "https://api.github.com/graphql";
 
 async function fetchGraphQL(
-  text: string,
+  text?: string | null,
   variables?: Record<string, string | number>
-) {
+): Promise<GraphQLResponse> {
   const GITHUB_AUTH_TOKEN = process.env.NEXT_PUBLIC_GITHUB_AUTH_TOKEN;
+
+  if (!text) {
+    throw new Error("graphql query is empty.");
+  }
 
   const response = await fetch(ENDPOINT, {
     method: "POST",
@@ -17,8 +23,13 @@ async function fetchGraphQL(
       variables,
     }),
   });
+  const data = await response.json();
 
-  return await response.json();
+  if (response.status >= 400) {
+    return { errors: [data] };
+  }
+
+  return data;
 }
 
 export default fetchGraphQL;
